@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    // 👉 Cómo añadir anotaciones a mi código.
+    // Esto es un comentario de una línea
+    /*
+      Esta es un comentario
+      que tiene varias lineas
+    */
+
+
+    // 👉 Algunos tipos de Datos que tenemos en JavaScript.
+    let edad = 18.5 // número
+    let nombre = 'Aguacate' // cadena de texto
+    let calor = true // booleano puede ser true or false
+
+
+    // Mostrar mensajes en la consola
+    // No olvides darle a F12 en Chrome
+    console.log(edad, nombre, calor)
+
+
+    // Mostrar mensaje en el body del documento HTML
+    document.body.textContent = nombre
+
+
+    // 👉 Objetos, métodos y propiedades (a grandes rasgos).
+    // Math y Date son objetos que trae el lenguaje para trabajar
+    // con operaciones matemáticas y fechas respectivamente
+    console.log('Métodos', Math.random(), Date.now()) // random() y now() son métodos
+    console.log('Propiedad longitud del texto', nombre.length) // length es una propiedad
+
+
+    // 👉 Variables.
+    let usuario = 'Ada'
+    usuario = usuario + ' Lovelace'
+
+    const password = 89345 // las constantes no las podemos cambiar más adelante
+    console.log('Variables', usuario, password)
+
+
+    // 👉 Operaciones.
+    const valor = (1 + 4 - 1) * 2 / 3
+    console.log('Operaciones', valor)
+
+
+    // 👉 Concatenación de cadenas de texto.
+    console.log('Concatenación' + ' de ' + 'cadenas' + ' de ' + nombre + 's')
+
+
+    // 👉 Plantillas de cadena de texto para insertar expresiones.
+    console.log(`Plantilla de cadena de texto 👉 ${usuario}`)
+
+
+    // 👉 Comparaciones
+    // ¿es 2 mayor que 1? ¿es 1 menos o igual que 2? 
+    // ¿la cadena perro es igual a gato? ¿la cadena kiwki es distinta de kiwi?
+    console.log('Comparaciones', 2 > 1, 1 <= 2, 'perro' == 'gato', 'kiwi' != 'kiwi')
+
+
+    // 👉 Operadores lógicos
+    // || = OR = O, esto o lo otro, si al menos uno es verdadero devuelve verdadero
+    console.log('O lógico', true || false, false || false, true || true)
+
+    // && = AND = Y, esto y lo otro, solo si todo es verdadero devuelve verdadero
+    console.log('Y lógico', true && false, false && false, true && true)
+
+    // ! = Not = No, lo contrario (siempre en booleano, true or false)
+    console.log('Negación', !true)
+
+
+    // 👉 Condiciones.
+    if (calor) { // si calor es verdadero
+      console.log('Hace calor') // escribimos en consola hace calor
+    }
+
+    // Podemos poner que ocurre en caso de que no se cumpla
+    if (calor) { // si calor es verdadero
+      console.log('Hace calor')
+    } else { // si calor es falso
+      console.log('Hace frio')
+    }
+
+    // Podemos poner tantas condiones como queramos
+    if (calor && 3 > 2) {
+      console.log('Sigue haciendo calor')
+    }
+
+    // Si tenemos una sola linea de código podemos quitar las llaves
+    if (calor && 3 > 2) console.log('Hace calor, uoh uoh')
+
+    // Podemos verificar si se cumplen más condiciones una vez pasada la primera
+    if (!calor) // si no hace calor
+      console.log('Me echo el edredón')
+    else if (5 > 2) // hace calor y si se cumple que 5 es mayor que 2
+      console.log('Enciendo el aire')
+    else
+      console.log('Me voy a la playa')
+  </script>
+</body>
+
+</html>

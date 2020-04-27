@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    /* Todo lo que es hijo de body, un nivel dentro de body */
+    body > * {
+      border: 2px solid green;
+    }
+
+    /* Todos los h1 hijos de body */
+    body > h1 {
+      border: 2px solid grey;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Parte estática Encabezado 1</h1>
+  <p>Párrafo</p>
+  <div></div>
+  <section></section>
+  <aside></aside>
+  <footer></footer>
+  <script>
+    // 👉 Mostrar mensaje en un elemento HTML
+    document.querySelector('p').textContent = 'Nuevo texto en párrafo'
+
+
+    // 👉 Cambiar el HTML
+    document.querySelector('div').innerHTML = '<h1>Nuevo encabezado</h2>'
+
+
+    // 👉 Funciones
+    // Declaración de una función
+    function mensaje() {
+      console.log('Este es un mensaje que se muestra en la consola')
+    }
+
+    // Llamar (ejecutar) una función
+    mensaje()
+    mensaje() // podemos hacerlo tantas veces como queramos
+
+    // Funciones con parámetros
+    function mensaje_personalizado(nombre) {
+      console.log(`Mi nombre es ${nombre}`)
+    }
+
+    mensaje_personalizado('Mr Robot')
+
+    // Funciones que devuelven algo
+    function mensaje_nuevo(nombre) {
+      return `Mi nuevo nombre es ${nombre}`
+    }
+
+    document.querySelector('section').innerHTML =
+      `<h2>${mensaje_nuevo('Aguacate')}</h2>`
+
+    // Funciones con valores por defecto
+    function detalles(nombre = 'Anónimo', edad = 2) {
+      return `Mi nuevo nombre es ${nombre} y tengo ${edad} años`
+    }
+
+    document.querySelector('aside').innerHTML =
+      `<h2>${detalles()}</h2>
+      <h2>${detalles('Julieta Venegas', 49)}</h2>`    
+
+
+    // 👉 Funciones Flecha
+    const suma = (a, b) => {
+      return a + b
+    }
+
+    document.querySelector('footer').innerHTML =
+      `<h2>${suma(2, 2)}</h2>`
+    
+    // Podemos acortar las funciones flecha si solo tenemos una linea de código
+    const contar_letras = texto => texto.length
+    
+    console.log(contar_letras('Erase una vez en un pais lejano un joven principe'))
+
+  </script>
+
+  <!-- Este es un comentario en HTML -->
+  <!-- Podemos enlazar un archivo externo con JavaScript al igual que con CSS 
+       En este caso estamos cargando los ejercicios resueltos.
+  -->
+  <script src="ejercicios-resueltos.js"></script>
+</body>
+
+</html>
