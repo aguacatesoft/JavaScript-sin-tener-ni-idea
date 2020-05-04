@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <script>
+    // 👉 Arrays
+    // Array con una lista de cadenas de caracteres
+    let objetivos = ['dormir', 'comer', 'bailar']
+    // Array con una lista de números
+    let guerras = [1914, 1939]
+
+    // Acceder a un elemento de un array
+    console.log(objetivos[2]) // 'bailar'
+
+    // Longuitud de mi array
+    console.log(objetivos.length) // 3
+
+    // Añadir elemento a un array
+    objetivos.push('beber', 'programar') // podemnos añadir mútiples elementos
+    console.log(objetivos) // ['dormir', 'comer', 'bailar', 'beber', 'programar']
+
+    // Eliminar elemento de un array
+    let objetivo = objetivos.pop() // elemina el elemento y me lo devuelve
+    console.log(objetivo) // 'programar'
+    console.log(objetivos) // ['dormir', 'comer', 'bailar', 'beber']
+    
+    // Un array puede contener cualquier tipo de elemento, incluso otros arrays
+    let array_de_arrays = [[1, 2], [3, 4, 5]]
+    console.log(array_de_arrays[1][2]) // 5
+    
+
+    // 👉 Bucles
+    // Bucle For
+    /* 
+       for (expresionInicial; condicion; expresionIncremento)
+         sentencia
+    */
+    // Contar de 0 a 3
+    // Para i = 0; si i es menor que 4 mostramos y sumamos 1 al valor anterior
+    for (let i = 0; i < 4; i += 1) // i = i + 1 es lo mismo que i += 1
+      console.log(i) // mostramos número
+    
+    // Recorrer un array
+    // Para i = 0, si i es menor que 3 mostramos y sumamos 1 
+    for (let i = 0; i < objetivos.length; i++) // con suma de 1 en 1 podemos poner i++
+      console.log(objetivos[i]) // mostramos elemento de mi array
+
+    // Recorrer un array hacia atrás
+    // Para i = 3 - 1; si i es mayor o igual que 0, mostramos y rectamos 1
+    for (let i = objetivos.length - 1; i >= 0; i--) 
+      console.log(i, objetivos[i])
+
+    // Arrays anidados
+    let tus_amigos = ['Lidia', 'Pablo', 'Paqui', 'Juan', 'Silvia']
+    let mis_amigos = ['Pablo', 'Juanca', 'Anay', 'Silvia', 'Marta']
+    let amigos_en_comun = [] // array vacio para meter amigos en común
+    
+    for (let i = 0; i < tus_amigos.length; i++) {
+      for (let j = 0; j < mis_amigos.length; j++) {
+        if (tus_amigos[i] == mis_amigos[j]) {
+          amigos_en_comun.push(tus_amigos[i])
+        }
+      }
+    }
+
+    console.log(amigos_en_comun) // ['Pablo', 'Silvia']
+
+
+    // Bucle While
+    /* 
+        while (condicion)
+          sentencia
+    */
+    let contador = 1
+    while (contador < 4) {
+      console.log(contador)
+      contador++
+    }
+
+
+    // El bucle While es muy útil cuando no sabemos el número exacto de vueltas
+    let lanzar_dados = () => Math.floor(Math.random() * 6) + 1
+
+    let numero
+    while (numero != 3) { // mientras no saquemos un 3 lanzamos los dados
+      numero = lanzar_dados()
+      console.log(numero)
+    }
+
+
+    // Romper Bucles
+    let trabajos = [
+      'Limpiador de alcantarillas', 
+      'Analizador de gases intestinales',
+      'Programador',
+      'Instagramer']
+    
+    for (let i = 0; i < trabajos.length; i++) {
+      console.log(trabajos[i]) // mostramos antes para ver 'Programador' antes de romper
+      if (trabajos[i] == 'Programador') break
+    }
+  </script>
+</body>
+
+</html>
