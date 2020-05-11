@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <script>
+    // 👉 Más sobre funciones
+    // Podemos asignar funciones a variables
+    let suma = (a, b) => a + b
+    let suma2 = suma
+
+    console.log(suma(2, 2), suma2(2, 2))
+
+    // Callbacks o funciones que se pasan a otras funciones como argumentos
+    let es_numero_par = numero => numero % 2 == 0
+
+    let mensaje_sobre_numero = (numero, callback) =>
+      console.log(`El número ${numero} es ${callback(numero) ? 'par' : 'impar'}`)
+
+    mensaje_sobre_numero(8, es_numero_par)
+
+
+    // 👉 setInterval
+    // Lo guardamos en una variable para poder pararlo luego
+    let interval_id = setInterval(() => console.log('¡Hola!'), 1000)
+
+
+    // 👉 setTimeout 
+    // Igual que setInterval pero se ejecuta solo una vez
+    // Vamos a usarlo para que a los 6 segundo el setInterval anterior deje de ejecutarse
+    setTimeout(() => clearInterval(interval_id), 6e3) // 6000 = 6e3
+    
+
+    // 👉 Iteradores
+    // forEach
+    let series = ['Death Note', 'Chernobyl', 'One Punch Man']
+    // Para cada serie de mi array series muestro en consola la serie que quiero ver
+    // serie = elemento actual en mi iteración, i = posición en el array, y array es series
+    series.forEach((serie, i, array) => console.log(`Quiero ver ${serie}`))
+
+    // map
+    // Los parámetros para map son los mismos solo que podemos devolver un array
+    // Recuerda que si no usamos los parámetros podemos omitirlos
+    // pero tienes que mantener el orden
+    let salarios = [32100, 44000, 65002, 80100, 120500]
+
+    let nuevos_salarios = salarios.map(salario => salario + 5000)
+    console.log(salarios, nuevos_salarios)
+
+    // filter
+    // El filter es igual que el map solo que me devuelve un array filtrado
+    let palabras = ['libertad', 'igualdad', 'conocimiento', 'ocio', 'valor']        
+    // Nos quedamos solo con aquellas palabras cuya longitud sea mayor que 5
+    let favoritas = palabras.filter(palabra => palabra.length > 5)
+
+    // Si queremos mostras nuestro nuevo array sin comas usando otro separador
+    // podemos usar join
+    console.log(favoritas.join(' '))
+
+    // findIndex
+    // Nos devuelve la posición en la que se encuentra un elemento dentro de mi array
+    let index = palabras.findIndex(palabra => palabra == 'ocio')
+    console.log(index)
+
+    // reduce
+    // El método reduce tiene 2 parámetros: el callback y el valor inicial de su acumulador
+    // Dentro de los parámetros de callback tenemos el acumulador más los parámetros
+    // de los métodos anterior
+    let gastos = [1050, 500, 700, 1200, 59, 2040, 985, 4000, 300, 5, 200, 0]
+    let total = gastos.reduce((acumulador, gasto, i, array) => {
+      acumulador += gasto
+      return acumulador
+    }, 0)
+
+    console.log(total)
+    // Recuerda que no tienes porque escribir la forma corta siempre, 
+    // usa lo que te resulte más claro
+    console.log([1, 2, 3, 4].reduce((acc, num) => acc += num, 0))
+
+
+    // 👉 Implementación de los iteradores anteriores con reduce
+    // forEach con reduce
+    // No necesitamos el acumulador pero lo ponermos porque va en orden
+    // Y necesitamos inicializarlo a algo
+    // Ni hacer nada con lo que devolvamos
+    series.reduce((acc, serie) => console.log(`Quiero ver ${serie}`), 0)
+
+    // map con reduce (nuestro acumulador será ahora un array)
+    let nuevos_salarios2 =
+    salarios.reduce((acc, salario) => {
+      acc.push(salario + 5000)
+      return acc
+    }, [])
+
+    console.log(nuevos_salarios2)
+
+    // filter con reduce (añadimos al acumulador solo cuando cumple la condición)
+    let favoritas2 = 
+    palabras.reduce((acc, palabra) => {
+      if (palabra.length > 5) acc.push(palabra)
+      return acc
+    }, [])
+
+    console.log(favoritas2)
+
+    // findIndex con reduce (aunque seguiría iterando una vez encontrado)
+    let index2 = palabras.reduce((acc, palabra, i) => {
+      if (palabra == 'ocio') acc = i
+      return acc
+    }, 0)
+
+    console.log(index2)
+
+  </script>
+</body>
+</html>
