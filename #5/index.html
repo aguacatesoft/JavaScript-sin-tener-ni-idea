@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <script>
+    // 👉 Objetos
+    // Crear un objeto vacío
+    let perro = {}
+
+    // Añadirle propiedades a un objeto
+    perro.nombre = 'Torito'
+    perro.edad = 4
+    perro.color = 'negro'
+    perro.campeonatos_ganados = ['Mundial', 'Europeo', 'Americano']
+
+    console.log(perro)
+
+    // Acceder a una propiedad
+    console.log(perro.nombre)
+
+    // Crear un objeto con las propiedades dentro
+    let perro2 = {
+      nombre: 'Nova',
+      edad: 1,
+      color: 'bicolor',
+      campeonatos_ganados: []
+    }
+
+    // 2 formas de acceder a la propiedad
+    console.log(perro2.nombre, perro2['nombre'])
+
+    // Borrar una propiedad
+    delete perro2.color
+
+    console.log(perro2)
+
+    // Crear un método (función dentro de un objeto)
+    // Vamos a crear 2 métodos, uno para saludar y otro para despedirnos
+    let persona = {
+      saludar() {
+        console.log('Hola, ¿qué tal?')
+      },
+      despedir() {
+        console.log('Adiós, nos vemos pronto')
+      }
+    }
+
+    // Vamos a llamar a los 2 métodos del objeto persona
+    persona.saludar()
+    persona.despedir()
+
+    // Anidación de objetos
+    let tren = {
+      pasajeros: null,
+      personal: {
+        conductor: {
+          nombre: 'Daenerys Targaryen',    
+          saludar() { console.log('I am the Mother of Dragons') }
+        }
+      }
+    }
+
+    // Trabajar con las partes dentro de mi objeto anidado
+    tren.pasajeros = []
+    tren.pasajeros.push({ nombre: 'John Nieve', familia: 'Stark' })
+
+    // Mostrar el primer pasajero
+    console.log(tren.pasajeros[0].nombre)
+
+    // Recorrer objetos
+    // Partimos de este objeto que vamos a recorrer
+    let juego = {
+      nombre: 'Minecraft',
+      tipo: 'Mundo abierto',
+      creador: 'Notch',
+      lanzamiento: 2009
+    }
+
+    // Para cada propiedad en juego muestro en consola la propiedad
+    for (const propiedad in juego) console.log(propiedad)
+
+    // Para cada propiedad en juego muestro el valor de esa propiedad
+    for (const propiedad in juego) console.log(juego[propiedad])
+
+
+    // 👉 Funciones fábrica (una función que me devuelve un objeto)
+    const fabrica_objeto = (nombre, creador, lanzamiento) => {
+      return {
+        nombre,
+        creador,
+        lanzamiento,
+        jugar() {
+          console.log('Cargando juego...')
+        }
+      }
+    }
+
+    // Voy a usar mi función fábrica para crear 2 objetos
+    let minecraft = fabrica_objeto('Minecraft', 'Notch', 2009)
+    let fortnite = fabrica_objeto('Fortnite', 'Epic Games', 2017)
+
+    console.log(minecraft, fortnite)
+
+    // Simulamos que estamos cargando uno de los juegos
+    fortnite.jugar()
+  </script>
+  <script src="ejercicios-resueltos.js"></script>
+</body>
+</html>
+
+
