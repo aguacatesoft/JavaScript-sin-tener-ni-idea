@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <script>
+    // 👉 Declaración de promesa
+    // Las promesas pueden salir bien o mal como en la vida misma
+    let numero = 5
+ 
+    let mi_promesa = new Promise((resolve, reject) => {
+      if (numero > 0) resolve('Se cumplió la promesa :) ')
+      else reject('No se cumplió la promesa :( ')
+    })
+
+    console.log(mi_promesa)
+
+    // Las promesas la usamos para tareas que consumen un tiempo
+    // Estamos simulando el consumo de tiempo con setTimeout
+    let nueva_promesa = new Promise((resolve, reject) => {
+      setTimeout(resolve, 5000)
+    })
+
+
+    // 👉 .then()
+    // Interactúo con mi promesa usando el método then cuando todo ha salido bien
+    nueva_promesa.then(() => console.log('La tarea ya ha terminado'))
+
+    // El código de las promesas es asíncrono, esto quiere decir simplemente
+    // que no se ejecuta en el momento. Nuestras promesas tardan un tiempo en
+    // resolverse, mientras podemos hacer otras cosas
+    console.log('Estoy esperando lo que me han prometido')
+
+
+    // 👉 .catch()
+    // Para atrapar cualquier error de las promesas usamos el método catch
+    // 👉 .finally()
+    // Para ejecutar cualquier cosa al final independientemente de que haya salido
+    // bien o mal usamos el método finally
+    let obtener_premio = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let num = Math.random()
+      
+        if (num < .5 ) resolve('Le tocó un número < que 0.5: ¡ha ganado!')
+        else reject('Le tocó un número >= que 0.5: ha perdido')
+      }, 3000)
+    })
+
+    obtener_premio
+      .then(info => console.log(info))
+      .catch(error => console.log(error))
+      .finally(() => clearInterval(interval))
+
+    // Ejecutamos este código mientras espero a mi promesa y luego con finally
+    // lo paramos
+    let interval = setInterval(() => 
+      console.log('Mi código mientras espero mi promesa'), 500)
+
+
+    // 👉 Promise.all
+    // Cuando queremos comprobar varias promesas a la vez usamos el método
+    // all the las promesas
+    // Vamos a crear primero un generador de promesas random
+    function nueva_promesa_random() {
+      return new Promise((resolve, reject) =>
+        setTimeout(
+          () => Math.round(Math.random()) ? resolve() : reject(),
+          Math.random() * 5000 )
+        )
+    }
+
+    // Creamos 3 promesas
+    let chequear_falda = nueva_promesa_random()
+    let chequear_crema = nueva_promesa_random()
+    let chequear_agua = nueva_promesa_random()
+
+    // Cuando se cumplan todas saldremos por el then, 
+    // en el momento que haya cualquier fallo saldremos por el catch
+    // y si o si terminaremos con el finally
+    Promise.all([chequear_falda, chequear_crema, chequear_agua])
+      .then(() => console.log('Me voy de viaje'))
+      .catch(() => console.log('Me quedo en casa'))
+      .finally(() => console.log('Llamo a mi amiga'))
+
+
+    // 👉 Concatenación de promesas
+    // Unas promesas pueden depender de otras para ello podemos concatenar
+    // varios then seguidos
+    /*
+      buscar_producto(producto)
+        .then(producto_econtrado => procesar_pago(producto_encontrado))
+        .then(producto_pagado => enviar(producto_pagado))
+        .then(todo_se_cumplio => console.log(todo_se_cumplio))
+        .catch(algo_salio_mal => console.log(algo_salio_mal))
+        .finally(() => mostrar_estado_actual())
+    */
+  </script>
+</body>
+</html>
