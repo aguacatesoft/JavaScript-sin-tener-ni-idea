@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <script>
+    // 👉 Async: Funciones asíncronas
+    // Añadimos async delante de la delcaración de mi función
+    async function mi_funcion_Alicia() {
+      return 'Hola soy Alicia'
+    }
+
+    const mi_funcion_Bob = async () => 'Hola soy Bob'
+
+    // Crean promesas sin necesidad de usar new Promise
+    console.log(mi_funcion_Bob(), mi_funcion_Alicia())
+
+    // Interactuamos igual que con cualquier promesa
+    mi_funcion_Alicia().then(datos => console.log(datos))
+
+
+    // 👉 Await: Espera a que termine una promesa
+    // Por ahora solo lo podemos usar dentro de funciones asíncronas
+    async function me_encanta_esperar() {
+      let a = await new Promise(resolve => setTimeout(() => resolve('A'), 1000))
+      console.log(a)
+    }
+
+    me_encanta_esperar()
+
+
+    // Podemos esperar varias promesas dentro de una función asíncrona
+    async function me_encanta_esperar_2() {
+      console.log('1')
+      let a = await new Promise(r => setTimeout(() => r('A'), 1e3))
+      console.log('2', a)
+      let b = await new Promise(r => setTimeout(() => r('B'), 500))
+      console.log('3', b)
+      let c = await new Promise(r => setTimeout(() => r('C'), 2e3))
+      console.log('4', c)
+    }
+ 
+    // Las interacciones como ya sabes son iguales que con las promesas
+    me_encanta_esperar_2().finally(() => clearInterval(interval))
+    
+    let interval = 
+      setInterval(() => console.log('Haciendo mis cosas mientras'), 500)
+
+    // Los errores los atrapamos com bien sabes con el catch
+    async function voy_a_fallar_a_mi_promesa() {
+      await new Promise((ok, fallo) => setTimeout(() => fallo('✖'), 2e3))
+    }
+
+    // Si los parámetros van directamente al método podemos omitir la función flechita
+    // pero recuerda no poner los paréntesis porque sino se llamará en el momento
+    voy_a_fallar_a_mi_promesa().catch(err => console.log(`Error: ${err}`))
+    voy_a_fallar_a_mi_promesa().catch(console.log)
+
+
+    // Antes esperamos de manera secuencial. Si queremos ejecutar simultáneamente
+    // ponemos todos los awaits al final
+    async function me_encanta_esperar_3() {
+      console.log('1')
+      let a = new Promise(r => setTimeout(() => r('A'), 1e3))
+      console.log('2', a)
+      let b = new Promise(r => setTimeout(() => r('B'), 500))
+      console.log('3', b)
+      let c = new Promise(r => setTimeout(() => r('C'), 2e3))
+      console.log('4', c)
+      console.log(5, await a, await b, await c)
+    }
+ 
+    // Voy ejecutarlo 6 segundos después para que no se me solape con todo lo anterior
+    // y puedas verlo claramente en la consola
+    setTimeout(me_encanta_esperar_3, 6e3)
+  </script>
+  <script src="ejercicios-resueltos.js"></script>
+</body>
+</html>
